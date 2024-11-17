@@ -16,33 +16,23 @@ body {
 
 /* Header Styles */
 header {
-    text-align: center;
     padding: 2rem 0;
     border-bottom: 2px solid #eee;
     margin-bottom: 2rem;
+    text-align: center;
 }
 
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+header nav {
+    margin-top: 1rem;
 }
 
-header h1 a {
-    text-decoration: none;
-    color: inherit;
-}
-
-nav {
-    margin: 1rem 0;
-}
-
-nav a {
+header nav a {
     margin: 0 1rem;
     color: #555;
     text-decoration: none;
 }
 
-nav a:hover {
+header nav a:hover {
     color: #000;
 }
 
@@ -86,7 +76,95 @@ article.post-card .post-title a:hover {
     color: #0066cc;
 }
 
-article.post-card .post-meta {
+/* Highlight Blocks */
+.highlight-block {
+    background: #f8f9fa;
+    border-left: 4px solid #0066cc;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Different types of highlight blocks */
+.highlight-block.info {
+    border-left-color: #0066cc;
+    background: linear-gradient(to right, #f0f7ff, #f8f9fa);
+}
+
+.highlight-block.warning {
+    border-left-color: #ffc107;
+    background: linear-gradient(to right, #fff9e6, #f8f9fa);
+}
+
+.highlight-block.success {
+    border-left-color: #28a745;
+    background: linear-gradient(to right, #f0fff4, #f8f9fa);
+}
+
+.highlight-block.danger {
+    border-left-color: #dc3545;
+    background: linear-gradient(to right, #fff5f5, #f8f9fa);
+}
+
+/* Title for highlight blocks */
+.highlight-block h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* Text within highlight blocks */
+.highlight-block p {
+    margin: 0;
+    line-height: 1.6;
+    color: #555;
+}
+
+.highlight-block p + p {
+    margin-top: 1rem;
+}
+
+/* Quote style highlight block */
+.highlight-block.quote {
+    font-style: italic;
+    padding-left: 3rem;
+    position: relative;
+}
+
+.highlight-block.quote::before {
+    content: '"';
+    position: absolute;
+    left: 1rem;
+    top: 0.5rem;
+    font-size: 3rem;
+    color: #0066cc;
+    font-family: Georgia, serif;
+    opacity: 0.5;
+}
+
+/* Compact version */
+.highlight-block.compact {
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+}
+
+/* With icon support */
+.highlight-block.with-icon {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.highlight-block.with-icon .icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+}
+
+/* Post Meta Styles */
+.post-meta {
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 1rem;
@@ -115,79 +193,6 @@ article.post-card .post-meta {
 .post-meta .tag:hover {
     background: #e0e0e0;
     color: #333;
-}
-
-article.post-card .post-meta .category {
-    margin-left: 1rem;
-    padding-left: 1rem;
-    border-left: 2px solid #ddd;
-}
-
-article.post-card .post-excerpt {
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-/* Pagination Styles */
-.pagination {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.pagination a {
-    color: #0066cc;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border: 1px solid #0066cc;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-}
-
-.pagination a:hover {
-    background: #0066cc;
-    color: white;
-}
-
-.pagination .page-number {
-    color: #666;
-}
-
-.post-title {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-}
-
-.post-meta {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-}
-
-.post-excerpt {
-    margin-bottom: 1rem;
-}
-
-.post-content {
-    margin-bottom: 2rem;
-}
-
-.post-content img {
-    max-width: 100%;
-    height: auto;
-    margin: 1rem 0;
-}
-
-.read-more {
-    color: #0066cc;
-    text-decoration: none;
-}
-
-.read-more:hover {
-    text-decoration: underline;
 }
 
 /* Sidebar Styles */
@@ -230,32 +235,6 @@ aside {
     text-decoration: underline;
 }
 
-/* Post Navigation */
-.post-navigation {
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid #eee;
-}
-
-.post-navigation::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.post-navigation a {
-    color: #0066cc;
-    text-decoration: none;
-}
-
-.post-navigation .prev {
-    float: left;
-}
-
-.post-navigation .next {
-    float: right;
-}
-
 /* Footer Styles */
 footer {
     text-align: center;
@@ -270,7 +249,7 @@ footer .social-icons-container {
     justify-content: center;
 }
 
-/* Social Icons Styles */
+/* Social Icons */
 .social-icons-container {
     display: flex;
     gap: 1rem;
@@ -312,28 +291,39 @@ footer .social-icons-container {
     transform: scale(1.1);
 }
 
-/* Platform-specific colors */
-.social-icon.linkedin { color: #0077b5; }
-.social-icon.facebook { color: #1877f2; }
-.social-icon.twitter { color: #1da1f2; }
-.social-icon.github { color: #333; }
-
-/* Archive Page Styles */
-.archive-year {
-    margin-bottom: 2rem;
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 }
 
-.archive-year h2 {
-    margin-bottom: 1rem;
+.loading-overlay.active {
+    display: flex;
+    opacity: 1;
 }
 
-.archive-month {
-    margin-bottom: 1.5rem;
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
-.archive-month h3 {
-    margin-bottom: 0.5rem;
-    color: #666;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Responsive Design */
@@ -345,5 +335,25 @@ footer .social-icons-container {
     nav a {
         display: inline-block;
         margin: 0.5rem 1rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .header-image img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .highlight-block {
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .highlight-block.quote {
+        padding-left: 2rem;
     }
 }
