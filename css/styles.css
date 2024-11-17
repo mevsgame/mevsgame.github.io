@@ -344,8 +344,7 @@ footer .social-icons-container {
     }
 
     .header-image img {
-        width: 80px;
-        height: 80px;
+        width: 200px; 
     }
 
     .highlight-block {
