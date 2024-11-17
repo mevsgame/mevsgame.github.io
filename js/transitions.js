@@ -66,6 +66,7 @@ class PageTransitions {
             const newMain = newDoc.querySelector('main');
             if (currentMain && newMain) {
                 currentMain.innerHTML = newMain.innerHTML;
+                currentMain.className = newMain.className;
             }
 
             // Update meta tags
