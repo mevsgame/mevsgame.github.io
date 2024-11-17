@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Path to your Python script
+SCRIPT="generate_posts_json.py"
+
+# Run the script
+python "$SCRIPT"
+
+# Add the generated file to the commit
+git add data/posts.json
