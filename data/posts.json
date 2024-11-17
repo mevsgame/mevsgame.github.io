@@ -1,14 +1,14 @@
 {
   "posts": [
     {
-      "title": "Your Post Title",
+      "title": "First post",
       "url": "posts/2024/11/first-post/post.html",
       "date": "2024-11-17",
-      "category": "Technology",
+      "category": "",
       "tags": [
         ""
       ],
-      "excerpt": "A brief summary of your post that will appear in listings."
+      "excerpt": "Finding new ways to save myself from the devil called work obsession"
     }
   ]
 }
