@@ -90,6 +90,31 @@ article.post-card .post-meta {
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.post-meta .category {
+    margin-left: 0.5rem;
+}
+
+.post-meta .tags {
+    margin-top: 0.5rem;
+}
+
+.post-meta .tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    margin: 0.2rem;
+    background: #f0f0f0;
+    border-radius: 3px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.post-meta .tag:hover {
+    background: #e0e0e0;
+    color: #333;
 }
 
 article.post-card .post-meta .category {
@@ -239,6 +264,59 @@ footer {
     border-top: 2px solid #eee;
     color: #666;
 }
+
+footer .social-icons-container {
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+/* Social Icons Styles */
+.social-icons-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+
+.social-icon-sm {
+    width: 16px;
+    height: 16px;
+}
+
+.social-icon-lg {
+    width: 32px;
+    height: 32px;
+}
+
+.social-icon-xl {
+    width: 48px;
+    height: 48px;
+}
+
+.social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Platform-specific colors */
+.social-icon.linkedin { color: #0077b5; }
+.social-icon.facebook { color: #1877f2; }
+.social-icon.twitter { color: #1da1f2; }
+.social-icon.github { color: #333; }
 
 /* Archive Page Styles */
 .archive-year {
