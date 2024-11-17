@@ -1,10 +1,14 @@
 {
   "posts": [
     {
-      "title": "2024-11-17-01",
-      "url": "posts/2024/11/2024-11-17-01.html",
-      "date": "2024-11-17",
-      "category": "Uncategorized"
+      "title": "Your Post Title",
+      "url": "posts/2024/11/first-post.html",
+      "date": "2024-02-15",
+      "category": "Technology",
+      "tags": [
+        ""
+      ],
+      "excerpt": "A brief summary of your post that will appear in listings."
     }
   ]
 }

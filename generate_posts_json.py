@@ -22,42 +22,49 @@ def scan_posts_directory(posts_dir="posts"):
                     with open(file_path, 'r', encoding='utf-8') as f:
                         soup = BeautifulSoup(f.read(), 'html.parser')
                         
+                        # Get metadata from meta tags
+                        meta_date = soup.find('meta', {'name': 'post:date'})
+                        meta_category = soup.find('meta', {'name': 'post:category'})
+                        meta_tags = soup.find('meta', {'name': 'post:tags'})
+                        meta_excerpt = soup.find('meta', {'name': 'post:excerpt'})
+                        
                         # Extract title from the first h1 or h2 found
-                        title_tag = soup.find(['h1', 'h2', 'title'])
-                        title = title_tag.text if title_tag else os.path.splitext(file)[0]
+                        title_tag = soup.find(['h1', 'h2'])
+                        if not title_tag:
+                            title_tag = soup.find('title')
+                        title = title_tag.text.replace(' - My Blog', '') if title_tag else os.path.splitext(file)[0]
                         
-                        # Try to find a date in the meta tags or post-meta div
-                        date = None
-                        meta_date = soup.find('meta', {'name': 'date'})
-                        if meta_date:
-                            date = meta_date.get('content')
+                        # Get date from meta tag or fallback to file modification time
+                        date = meta_date.get('content') if meta_date else mod_time.strftime('%Y-%m-%d')
+                        
+                        # Get category from meta tag or default to "Uncategorized"
+                        category = meta_category.get('content') if meta_category else "Uncategorized"
+                        
+                        # Get tags list
+                        tags = []
+                        if meta_tags:
+                            tags = [tag.strip() for tag in meta_tags.get('content').split(',')]
+                        
+                        # Get excerpt from meta tag or generate from content
+                        excerpt = ''
+                        if meta_excerpt:
+                            excerpt = meta_excerpt.get('content')
                         else:
-                            date_div = soup.find('div', {'class': 'post-meta'})
-                            if date_div and 'Posted on' in date_div.text:
-                                date_text = date_div.text.replace('Posted on', '').strip()
-                                try:
-                                    parsed_date = datetime.strptime(date_text, '%B %d, %Y')
-                                    date = parsed_date.strftime('%Y-%m-%d')
-                                except ValueError:
-                                    date = mod_time.strftime('%Y-%m-%d')
-                        
-                        if not date:
-                            date = mod_time.strftime('%Y-%m-%d')
-                        
-                        # Try to find category
-                        category = "Uncategorized"
-                        category_meta = soup.find('meta', {'name': 'category'})
-                        if category_meta:
-                            category = category_meta.get('content')
+                            # Try to generate excerpt from first paragraph
+                            first_p = soup.find('div', {'class': 'post-content'}).find('p')
+                            if first_p:
+                                excerpt = first_p.text[:200] + ('...' if len(first_p.text) > 200 else '')
                         
                         # Get relative URL path
-                        rel_path = os.path.relpath(file_path).replace('\\', '/')
+                        rel_path = os.path.relpath(file_path, start='.').replace('\\', '/')
                         
                         posts.append({
                             "title": title,
                             "url": rel_path,
                             "date": date,
-                            "category": category
+                            "category": category,
+                            "tags": tags,
+                            "excerpt": excerpt
                         })
                 
                 except Exception as e:
@@ -82,7 +89,22 @@ def generate_posts_json():
         json.dump({"posts": posts}, f, indent=2, ensure_ascii=False)
     
     print(f"Generated posts.json with {len(posts)} posts")
-    return posts
+    
+    # Generate some statistics
+    categories = {}
+    tags = {}
+    for post in posts:
+        categories[post['category']] = categories.get(post['category'], 0) + 1
+        for tag in post['tags']:
+            tags[tag] = tags.get(tag, 0) + 1
+    
+    print("\nCategories:")
+    for category, count in categories.items():
+        print(f"  {category}: {count} posts")
+    
+    print("\nTags:")
+    for tag, count in sorted(tags.items(), key=lambda x: x[1], reverse=True):
+        print(f"  {tag}: {count} posts")
 
 if __name__ == "__main__":
     generate_posts_json()

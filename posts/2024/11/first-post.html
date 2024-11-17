@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Post Metadata -->
+    <meta name="post:date" content="2024-02-15">
+    <meta name="post:category" content="Technology">
+    <meta name="post:tags" content="">
+    <meta name="post:excerpt" content="A brief summary of your post that will appear in listings.">
+    
+    <title>Post Title - My Blog</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Header will be injected here -->
+    <div id="header-include"></div>
+
+    <main class="single-column">
+        <article>
+            <h2 class="post-title">Your Post Title</h2>
+            <div class="post-meta">
+                <span class="date">Posted on </span>
+                <span class="category"></span>
+                <div class="tags"></div>
+            </div>
+            <div class="post-content">
+                <p>Your blog post content goes here...</p>
+                
+                <!-- Example of including an image -->
+                <!-- <img src="/images/your-image.jpg" alt="Description"> -->
+                
+                <p>More paragraphs...</p>
+            </div>
+        </article>
+        
+        <aside>
+            <div class="widget">
+                <h3>Recent Posts</h3>
+                <ul id="recent-posts-list">
+                    <!-- Posts will be dynamically inserted here -->
+                    <li>Loading recent posts...</li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer will be injected here -->
+    <div id="footer-include"></div>
+
+    <!-- Load includes first -->
+    <script src="/js/config.js"></script>
+    <script src="/js/includes.js"></script>
+    <!-- Then load the blog functionality -->
+    <script src="/js/blog.js"></script>
+    <!-- Post-specific script -->
+    <script>
+        // Populate the metadata in the post
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get metadata from meta tags
+            const date = document.querySelector('meta[name="post:date"]')?.content;
+            const category = document.querySelector('meta[name="post:category"]')?.content;
+            const tags = document.querySelector('meta[name="post:tags"]')?.content;
+
+            // Format and display the date
+            if (date) {
+                const formattedDate = new Date(date).toLocaleDateString(undefined, {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                document.querySelector('.post-meta .date').textContent = `Posted on ${formattedDate}`;
+            }
+
+            // Display the category
+            if (category) {
+                document.querySelector('.post-meta .category').textContent = ` in ${category}`;
+            }
+
+            // Display tags if they exist
+            if (tags) {
+                const tagsList = tags.split(',').map(tag => tag.trim());
+                const tagsHtml = tagsList.map(tag => 
+                    `<a href="/tags/${tag.toLowerCase()}.html" class="tag">${tag}</a>`
+                ).join(' ');
+                document.querySelector('.post-meta .tags').innerHTML = tagsHtml;
+            }
+        });
+    </script>
+</body>
+</html>
