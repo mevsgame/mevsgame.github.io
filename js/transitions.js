@@ -31,23 +31,15 @@ class PageTransitions {
     }
 
     isInternalLink(link) {
-        return link.href.startsWith(window.location.origin) && 
-               !link.hasAttribute('download') && 
-               link.target !== '_blank';
+        return link.href.startsWith(window.location.origin) && !link.hasAttribute('download') && link.target !== '_blank';
     }
 
     async navigateTo(url, addToHistory = true) {
         if (this.isNavigating) return;
         this.isNavigating = true;
 
-        try {
-            // Show loading state
-            const overlay = document.querySelector('.loading-overlay');
-            overlay.classList.add('active');
-            document.querySelector('main').classList.add('loading');
-
-            // Add small delay to ensure transition is visible
-            await new Promise(resolve => setTimeout(resolve, 200));
+        try { 
+            await new Promise(resolve => setTimeout(resolve, 100));
 
             // Fetch the new page
             const response = await fetch(url);
@@ -82,11 +74,7 @@ class PageTransitions {
 
         } catch (error) {
             console.error('Navigation error:', error);
-        } finally {
-            // Hide loading state
-            const overlay = document.querySelector('.loading-overlay');
-            overlay.classList.remove('active');
-            document.querySelector('main').classList.remove('loading');
+        } finally { 
             this.isNavigating = false;
         }
     }
