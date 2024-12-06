@@ -15,7 +15,7 @@ const arms = [
         baseSpeed: 0.02,  
         targetReachTolerance: 2,
         targetSwitchDelay: 50,  
-        debugVisualization: false
+        debugVisualization: true
     }),
     
     new IKArm('two-bone', new Vector2(794, 450), {
@@ -23,7 +23,7 @@ const arms = [
         baseSpeed:  0.02,  
         targetReachTolerance: 2,
         targetSwitchDelay: 50,  
-        debugVisualization: false
+        debugVisualization: true
     }),
     
     new IKArm('two-bone', new Vector2(400, 0), {
@@ -31,7 +31,7 @@ const arms = [
         baseSpeed:  0.02,  
         targetReachTolerance: 2,
         targetSwitchDelay: 50,  
-        debugVisualization: false
+        debugVisualization: true
     }),
     new IKArm('ccd', new Vector2(894, 200), {
         segmentLength: 50,
@@ -39,7 +39,7 @@ const arms = [
         baseSpeed:  0.02, 
         targetReachTolerance: 3,
         targetSwitchDelay: 70,  
-        debugVisualization: false
+        debugVisualization: true
     }),
     new IKArm('fabrik', new Vector2(-100, 600), {
         segmentLength: 40,
@@ -47,7 +47,7 @@ const arms = [
         baseSpeed:  0.02,  
         targetReachTolerance: 2,
         targetSwitchDelay: 60,  
-        debugVisualization: false
+        debugVisualization: true
     }),
     new IKArm('fabrik', new Vector2(794, 700), {
         segmentLength: 40,
@@ -55,7 +55,7 @@ const arms = [
         baseSpeed:  0.02,  
         targetReachTolerance: 2,
         targetSwitchDelay: 60,  
-        debugVisualization: false
+        debugVisualization: true
     }),
     new IKArm('ccd', new Vector2(894, 900), {
         segmentLength: 50,
@@ -63,7 +63,7 @@ const arms = [
         baseSpeed:  0.02, 
         targetReachTolerance: 3,
         targetSwitchDelay: 70,  
-        debugVisualization: false
+        debugVisualization: true
     }),
     
     new IKArm('two-bone', new Vector2(400, 1100), {
@@ -71,7 +71,7 @@ const arms = [
         baseSpeed:  0.02,  
         targetReachTolerance: 2,
         targetSwitchDelay: 50,  
-        debugVisualization: false
+        debugVisualization: true
     }),
 ];
 
