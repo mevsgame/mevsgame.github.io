@@ -19,37 +19,71 @@
             background-repeat: no-repeat;
             background-position: center top;
             background-size: contain;
-
             overflow: visible; /* Add this to prevent clipping */
         }
         @media print {
-            #animation-container {
-                display: none;
+            #animation-container,
+            .profile-caption,
+            .image-caption,
+            .image-caption-animated,
+            .image-caption-animated::before,
+            .image-caption-animated::after,
+            #profile-pic .image-caption-animated {
+                display: none !important;
+                visibility: hidden !important;
+                content: none !important;
+                opacity: 0 !important;
+                height: 0 !important;
+                overflow: hidden !important;
+                position: absolute !important;
+                pointer-events: none !important;
             }
-            
+
+            /* Ensure container doesn't reserve space for hidden elements */
+            .img-container {
+                gap: 0 !important;
+            }    
             .profile-caption {
                 display: none;
             }
+            
+            body {
+                padding: 20mm 16mm; /* Keep consistent margins */
+                width: 210mm;
+                height: 297mm;
+                box-shadow: none;
+                border: none;
+                margin: 0 auto;
+            }
+
+            .page {
+                margin: 0; /* Remove additional page margins in print */
+            }
+            
         }
+
+        /* Screen-only styles for paper effect */
+        @media screen {
+            body {
+                box-shadow: 0 0 0.1mm rgba(0, 0, 0, 0.1);
+                border: 0.5px solid rgba(0, 0, 0, 0.02);
+                margin: 1rem auto;
+                padding: 20mm 16mm; /* Default print margins */
+            }
+        }
+
+
         .reach-range {
             fill: rgba(0, 255, 0, 0.1);
             stroke: rgba(0, 255, 0, 0.3);
             stroke-width: 1;
         }
-
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+ 
         body {
             font-family: 'Source Sans Pro', 'Open Sans', sans-serif;
             line-height: 1.37;
             color: #333;
             background: white;
-            padding: 15px;
             max-width: 210mm; /* A4 width */
             min-height: 297mm; /* A4 height */
             margin: 0 auto;
@@ -65,7 +99,27 @@
             }
 
             .page {
-                margin: 10mm;
+                margin: 0mm;
+            }
+        }
+
+        /* Desktop version */
+        @media (hover: hover) {
+            .desktop-caption {
+                display: inline;
+            }
+            .mobile-caption {
+                display: none;
+            }
+        }
+
+        /* Mobile version */
+        @media (hover: none) {
+            .desktop-caption {
+                display: none;
+            }
+            .mobile-caption {
+                display: inline;
             }
         }
 
@@ -86,18 +140,19 @@
 
         .header-media {
             display: flex;
-            gap: 10px;
+            gap: 10;
             align-items: center;
             height: 90px;
         }
 
-        .image-container {
+        .img-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 3px;
+            width: 90px; /* Match the width of your profile picture */
         }
-
+ 
         .profile-picture {
             width: 90px;
             height: 90px;
@@ -105,14 +160,78 @@
             border-radius: 5px;
             border: 1px solid #eee;
         }
+    /* Base image caption styles */
+    .image-caption {
+        font-size: 12px;
+        color: #FF3434;
+        opacity: 1;
+        white-space: nowrap;
+        text-align: center;
+    }
 
-        .image-caption {
-            font-size: 10px;
-            color: #FF3434;
-            opacity: 1;
-            white-space: nowrap;
-            text-align: center;
+    /* Animated variant */
+    .image-caption-animated {
+        font-size: 12px;
+        color: #FF3434;
+        white-space: nowrap;
+        text-align: center;
+        padding: 2px 8px;
+        position: relative;
+        animation: attention 3s ease-in-out infinite;
+        display: inline-block;
+        margin: 0 auto;
+    }
+
+    /* Glowing border effect */
+    .image-caption-animated::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        right: -1px;
+        bottom: -1px;
+        border: 1px solid #FF3434;
+        border-radius: 3px;
+        animation: borderPulse 3s ease-in-out infinite;
+    }
+
+    /* Background highlight effect */
+    .image-caption-animated::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #FF3434;
+        opacity: 0;
+        z-index: -1;
+        border-radius: 3px;
+        animation: backgroundPulse 3s ease-in-out infinite;
+    }
+    /* Text attention animation */
+    @keyframes attention {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
+
+    /* Border animation */
+    @keyframes borderPulse {
+        0%, 100% { 
+            opacity: 0.3;
+            transform: scale(1);
         }
+        50% { 
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+    }
+
+    /* Background animation */
+    @keyframes backgroundPulse {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 0.1; }
+    }
 
         .qr-code {
             width: 90px;
@@ -262,12 +381,13 @@
             </div>
             <div class="header-media">                
                 <div class="img-container" id="profile-pic">
-                    <img class="profile-picture" src="./images/meme2.png" alt="Profile Picture" />                    
-                    <div class="image-caption"  class="print:hidden">◭ mouse over me ◭</div>
-                </div>  
+                    <img class="profile-picture" src="./images/meme2.png" alt="Profile Picture" />         
+                    <span class="desktop-caption"><span class="image-caption-animated">◭ mouse over me ◭</span></span>
+                    <span class="mobile-caption"><span class="image-caption-animated">◭ Tap screen here ◭</span></span>
+                </div>
                 <div class="img-container">
-                    <img class="qr-code" src="./images/mevsgame_qr.svg" alt="LinkedIn QR Code">              
-                    <div class="image-caption"  class="print:hidden"></br></div>
+                    <img class="qr-code" src="./images/mevsgameactivision.svg" alt="LinkedIn QR Code">              
+                    <div class="image-caption"></br></div>
                 </div>
             </div>
         </div>
@@ -374,6 +494,7 @@
     </div>
 
     <script src="./arms/vector2.js"></script>
+    <script src="./arms/solver.js"></script>
     <script src="./arms/ikarm.js"></script>
     <script src="./arms/main.js"></script>
 </body>

@@ -1,4 +1,10 @@
 
+// Init globals
+
+var global_speed_multiplier = 1
+// A4 dimensions in pixels (at 96 DPI)
+const A4_WIDTH_PX = 794;  // 210mm
+const A4_HEIGHT_PX = 1123; // 297mm
 
 // Initialize arms
 const svg = document.getElementById('animation-container');
