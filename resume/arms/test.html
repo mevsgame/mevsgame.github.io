@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.2;
+        }
+        
+        .reach-range {
+            fill: rgba(0, 255, 0, 0.1);
+            stroke: rgba(0, 255, 0, 0.3);
+            stroke-width: 1;
+        }
+    </style>
+</head>
+<body>
+    <svg id="animation-container">
+        <defs>
+            <clipPath id="range-clip">
+            </clipPath>
+        </defs>
+        <g id="two-bone-arm"></g>
+        <g id="ccd-arm"></g>
+        <g id="fabrik-arm"></g>
+    </svg>
+    <div id="test"></div>
+    <script src="vector2.js"></script>
+    <script src="algo.js"></script>
+    <script src="ikarm.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

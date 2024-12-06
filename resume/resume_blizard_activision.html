@@ -4,6 +4,39 @@
     <meta charset="UTF-8">
     <title>Pawel Weronski - Expert Animation Programmer</title>
     <style>
+        
+        #animation-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;      /* Use percentage */
+            max-width: 794px; /* Max at A4 width */
+            aspect-ratio: 210/297; /* A4 aspect ratio */
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.05;
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: contain;
+
+            overflow: visible; /* Add this to prevent clipping */
+        }
+        @media print {
+            #animation-container {
+                display: none;
+            }
+            
+            .profile-caption {
+                display: none;
+            }
+        }
+        .reach-range {
+            fill: rgba(0, 255, 0, 0.1);
+            stroke: rgba(0, 255, 0, 0.3);
+            stroke-width: 1;
+        }
+
         /* Reset and base styles */
         * {
             margin: 0;
@@ -58,12 +91,27 @@
             height: 90px;
         }
 
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+
         .profile-picture {
             width: 90px;
             height: 90px;
             object-fit: cover;
             border-radius: 5px;
             border: 1px solid #eee;
+        }
+
+        .image-caption {
+            font-size: 10px;
+            color: #983434;
+            opacity: 1;
+            white-space: nowrap;
+            text-align: center;
         }
 
         .qr-code {
@@ -186,6 +234,15 @@
     </style>
 </head>
 <body>
+    <svg id="animation-container" class="print:hidden">
+        <defs>
+            <clipPath id="range-clip">
+            </clipPath>
+        </defs>
+        <g id="two-bone-arm"></g>
+        <g id="ccd-arm"></g>
+        <g id="fabrik-arm"></g>
+    </svg>
     <div class="page">
         <div class="header">
             <div class="header-content">
@@ -203,9 +260,15 @@
                     </div>
                 </div>
             </div>
-            <div class="header-media">
-                <img class="profile-picture" src="./images/meme2.png" alt="Profile Picture">
-                <img class="qr-code" src="./images/mevsgame_qr.svg" alt="LinkedIn QR Code">
+            <div class="header-media">                
+                <div class="img-container" id="profile-pic">
+                    <img class="profile-picture" src="./images/meme2.png" alt="Profile Picture" />                    
+                    <div class="image-caption"  class="print:hidden">mouse over me</div>
+                </div>  
+                <div class="img-container">
+                    <img class="qr-code" src="./images/mevsgame_qr.svg" alt="LinkedIn QR Code">              
+                    <div class="image-caption"  class="print:hidden"></br></div>
+                </div>
             </div>
         </div>
 
@@ -309,5 +372,9 @@
             </div>
         </div>
     </div>
+
+    <script src="./arms/vector2.js"></script>
+    <script src="./arms/ikarm.js"></script>
+    <script src="./arms/main.js"></script>
 </body>
 </html>
