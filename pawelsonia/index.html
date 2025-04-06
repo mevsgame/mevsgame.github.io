@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pl"> <!-- Default language set to Polish -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titles for Browser Tab (Polish Default) -->
+    <title class="lang lang-pl active">Ślub Pawła i Sonii</title>
+    <title class="lang lang-en">Paweł & Sonia's Wedding</title>
+
+    <style>
+        /* Basic Reset & Font */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            background-color: #FAF0E6; /* Linen - light beige */
+            color: #5C4033; /* Dark Brown/Bronze for text */
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        /* Container for content */
+        .container {
+            background-color: #FFF8F0; /* Slightly lighter beige/ivory */
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 700px; /* Max width on desktop */
+            width: 100%;
+            box-sizing: border-box; /* Include padding in width calculation */
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+        .lang-switcher button {
+            background-color: #E6D0D0; /* Dusty Rose */
+            color: #5C4033;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #D8BFD8; /* Thistle - slightly more pink */
+        }
+        .lang-switcher button.active {
+            font-weight: bold;
+            text-decoration: underline;
+            background-color: #D8BFD8; /* Highlight active language */
+        }
+
+        /* Headings */
+        h1 {
+            color: #B08080; /* Muted Rose/Pink */
+            margin-bottom: 0.5em;
+            font-size: 2.2em; /* Larger heading */
+        }
+        h2 {
+            color: #B08080; /* Muted Rose/Pink */
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            border-bottom: 1px solid #E6D0D0; /* Dusty Rose */
+            padding-bottom: 5px;
+        }
+
+        /* Image Placeholder */
+        .photo-placeholder {
+            background-color: #E6D0D0; /* Dusty Rose */
+            width: 100%;
+            max-width: 400px; /* Control max image size */
+            height: 300px; /* Adjust height as needed */
+            margin: 20px auto;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-style: italic;
+            font-size: 1.1em;
+            /* If using an actual image: */
+            /* Replace background-color etc. with:
+               content: '';
+               display: block; */
+        }
+        /* To use an actual image:
+           1. Remove the background-color, display:flex etc. from .photo-placeholder CSS
+           2. Add an <img> tag inside the div:
+              <div class="photo-placeholder">
+                 <img src="your-photo.jpg" alt="Paweł and Sonia" style="max-width:100%; height:auto; border-radius: 8px; display: block;">
+              </div>
+           Adjust styles as needed.
+        */
+
+
+        /* Important Info Section (Date/Time) */
+        .important-info {
+            background-color: #F5E1E1; /* Very light pink */
+            border: 1px solid #E6D0D0; /* Dusty Rose */
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        .important-info strong {
+            font-size: 1.4em; /* Make date/time stand out */
+            color: #A0522D; /* Sienna - darker accent */
+            display: block; /* Make it take its own line */
+            margin-bottom: 5px;
+        }
+
+        /* Future Party Info Block */
+        .future-party-info {
+            background-color: #F0FFF8; /* Mint Cream - subtle contrast */
+            border: 2px dashed #B08080; /* Dashed Muted Rose border */
+            color: #5C4033; /* Dark Brown text */
+            padding: 12px 18px;
+            margin: 25px 0;
+            border-radius: 5px;
+            font-weight: 500; /* Slightly bolder */
+        }
+
+        /* Map Section */
+        .map-container {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #E6D0D0; /* Dusty Rose separator */
+        }
+        .map-container iframe {
+            border: 1px solid #E6D0D0; /* Subtle border around map */
+            border-radius: 5px;
+            max-width: 100%; /* Ensure iframe is responsive */
+            height: 350px; /* Default height */
+        }
+        .map-link {
+            display: block;
+            margin-top: 10px;
+            color: #B08080;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .map-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Paragraph styling */
+        p {
+            margin-bottom: 1em;
+            font-size: 1.1em;
+        }
+
+        /* Language Content Styling */
+        .lang {
+            display: none; /* Hide languages by default */
+        }
+        .lang.active {
+            display: block; /* Show the active language */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .photo-placeholder {
+                height: 250px; /* Adjust photo height for mobile */
+            }
+            .map-container iframe {
+                height: 300px; /* Adjust map height for mobile */
+            }
+            .future-party-info {
+                 padding: 10px 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+            <!-- Polish button is now active by default -->
+            <button id="btn-pl" onclick="showLang('pl')" class="active">Polski</button>
+            <button id="btn-en" onclick="showLang('en')">English</button>
+        </div>
+
+        <!-- English Content (Initially hidden) -->
+        <div class="lang lang-en">
+            <h1>Paweł & Sonia</h1>
+            <p>Joyfully invite you to celebrate their wedding!</p>
+
+            <div class="photo-placeholder">
+                 Your photo here (e.g., <img src="our_photo.jpg" alt="Paweł and Sonia">)
+            </div>
+
+            <div class="important-info">
+                We're getting married on:
+                <strong>May 17th, at 12:00 PM</strong>
+                at the <br>
+                <strong>Wedding Palace (Pałac Ślubów)</strong><br>
+                Old Town (Starówka), Warsaw<br>
+                pl. Zamkowy 6
+            </div>
+
+            <!-- Future Party Info - English -->
+            <div class="future-party-info">
+                <strong>Party for Friends:</strong> Please note that a separate celebration party for our friends will be organized at a later date. We'll be in touch with details as soon as they are confirmed!
+            </div>
+
+            <p>
+                We are so excited to share this special day with our family and friends.
+                Join us as we exchange vows and begin our new life together.
+            </p>
+
+            <div class="map-container">
+                <h2>Map & Directions</h2>
+                <p>The ceremony will be held at Pałac Ślubów in the heart of Warsaw's Old Town.</p>
+                <!-- ===================================================================== -->
+                <!-- !!! IMPORTANT: REPLACE THE IFRAME BELOW with your specific embed code -->
+                <!-- Go to your link: https://maps.app.goo.gl/HNayQpThBYLNLG4N8 -->
+                <!-- Click Share -> Embed a map -> Copy HTML -> Paste it below        -->
+                <!-- ===================================================================== -->
+                <iframe
+                    src="PASTE_YOUR_GOOGLE_MAPS_EMBED_IFRAME_CODE_HERE"
+                    width="600"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                 <!-- Link uses your provided short URL -->
+                 <a href="https://maps.app.goo.gl/HNayQpThBYLNLG4N8" target="_blank" class="map-link">
+                    Open in Google Maps
+                </a>
+            </div>
+
+            <p style="margin-top: 30px;">We can't wait to see you there!</p>
+        </div>
+
+        <!-- Polish Content (Initially Active) -->
+        <div class="lang lang-pl active">
+            <h1>Paweł i Sonia</h1>
+            <p>Serdecznie zapraszają na uroczystość zaślubin!</p>
+
+             <div class="photo-placeholder">
+                 Wasze zdjęcie tutaj (np. <img src="our_photo.jpg" alt="Paweł i Sonia">)
+            </div>
+
+            <div class="important-info">
+                Pobieramy się:
+                <strong>17 Maja, o godzinie 12:00</strong>
+                w <br>
+                <strong>Pałacu Ślubów</strong><br>
+                Stare Miasto (Starówka), Warszawa<br>
+                pl. Zamkowy 6
+            </div>
+
+            <!-- Future Party Info - Polish -->
+            <div class="future-party-info">
+                <strong>Impreza dla Przyjaciół:</strong> Informujemy, że oddzielna impreza dla naszych Przyjaciół zostanie zorganizowana w późniejszym terminie. Skontaktujemy się z Wami ze szczegółami, gdy tylko ustalimy datę!
+            </div>
+
+            <p>
+                Jesteśmy podekscytowani, mogąc dzielić ten wyjątkowy dzień z naszą rodziną i przyjaciółmi.
+                Dołączcie do nas, gdy będziemy składać przysięgę i rozpoczynać nowe, wspólne życie.
+            </p>
+
+            <div class="map-container">
+                <h2>Mapa dojazdu</h2>
+                <p>Ceremonia odbędzie się w Pałacu Ślubów w sercu warszawskiej Starówki.</p>
+            
+                
+                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2442.7113441712354!2d21.014614200000004!3d52.24862650000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc68a5f7f8e5%3A0x83c807d3f2f4fd5e!2sWedding%20Palace!5e0!3m2!1sen!2spl!4v1743945394694!5m2!1sen!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    Otwórz w Google Maps
+                </a>
+            </div>
+
+            <p style="margin-top: 30px;">Nie możemy się doczekać, aby Was zobaczyć!</p>
+        </div>
+
+    </div> <!-- End Container -->
+
+    <script>
+        // Minimal JavaScript for language switching
+        function showLang(langCode) {
+            // Hide all language sections and titles
+            document.querySelectorAll('.lang').forEach(function(el) {
+                el.classList.remove('active');
+            });
+            // Deactivate all buttons
+            document.querySelectorAll('.lang-switcher button').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+
+            // Show the selected language section and title
+            document.querySelectorAll('.lang-' + langCode).forEach(function(el) {
+                el.classList.add('active');
+            });
+             // Activate the selected button
+            document.getElementById('btn-' + langCode).classList.add('active');
+
+            // Update page title based on the active language title tag
+             document.title = document.querySelector('head title.active').innerText;
+             // Update html lang attribute
+             document.documentElement.lang = langCode;
+        }
+
+        // Set initial title based on default language settings in HTML
+        document.addEventListener('DOMContentLoaded', (event) => {
+             document.title = document.querySelector('head title.active').innerText;
+        });
+    </script>
+
+</body>
+</html>
