@@ -82,12 +82,41 @@
         }
 
         /* --- Info Blocks --- */
-        .important-info { background-color: #F5E1E1; border: 1px solid #E6D0D0; padding: 15px; margin: 25px 0; border-radius: 5px; }
-        .important-info strong { font-size: 1.4em; color: #A0522D; display: block; margin-bottom: 5px; }
-        .future-party-info { background-color: #F0FFF8; border: 2px dashed #B08080; color: #5C4033; padding: 12px 18px; margin: 25px 0; border-radius: 5px; font-weight: 500; }
-        .info-gifts { /* Existing styles from .future-party-info apply */ }
-        .info-party { /* Existing styles from .future-party-info apply */ }
+        .important-info {
+    background-color: #F5E1E1;
+    border: 1px solid #E6D0D0;
+    padding: 15px;
+    margin: 25px 0;
+    border-radius: 5px;
+    line-height: 1.8; /* Optional: Slightly increase line-height within this block for better readability */
+}
 
+.important-info strong {
+    font-size: 1.4em; /* Keep this */
+    color: #A0522D; /* Keep this */
+    /* display: block; <--- REMOVE THIS */
+    /* margin-bottom: 5px; <--- REMOVE THIS */
+    /* Add a little space AFTER the strong tag if it's followed by text on the same line (optional, might not be needed now) */
+    /* margin-right: 0.3em; */
+}
+
+/* Style plain text lines directly within .important-info if needed */
+.important-info br {
+    margin-bottom: 0.2em; /* Optional: add a tiny bit more space after line breaks if needed */
+    display: block; /* Ensure BR acts as a block-level break */
+    content: ""; /* Required for margin on BR */
+}
+
+.future-party-info { background-color: #F0FFF8; border: 2px dashed #B08080; color: #5C4033; padding: 12px 18px; margin: 25px 0; border-radius: 5px; font-weight: 500; }
+.future-party-info strong {
+    display: block; /* Keep block here as these are headings */
+    margin-bottom: 5px;
+    color: #A0522D; /* Add color consistency if desired */
+    font-size: 1.1em; /* Adjust size if needed */
+}
+
+.info-gifts { /* Existing styles from .future-party-info apply */ }
+.info-party { /* Existing styles from .future-party-info apply */ }
 
         /* --- Map Section Specific Styles (within .container-map) --- */
         .map-container {
@@ -136,9 +165,9 @@
                 <img src="our_photo_bg.png" alt="Paweł and Sonia">
             </div>
             <div class="important-info">
-                We're getting married on:
-                <strong>May 17th, at 12:00 PM</strong>
-                <p>at the </p>
+                We're getting married on:<br>
+                <strong>May 17th, at 12:00 PM</strong><br>
+                at the<br>
                 <strong>Wedding Palace (Pałac Ślubów)</strong><br>
                 Old Town (Starówka), Warsaw<br>
                 pl. Zamkowy 6
@@ -167,12 +196,12 @@
                 <img src="our_photo_bg.png" alt="Paweł ♡ Sonia" style="max-width:100%; height:auto; border-radius: 8px; display: block;">
             </div>
             <div class="important-info">
-                Pobieramy się:
-                <strong>17 Maja, o godzinie 12:00</strong>
-                <p>w</p>
+                Pobieramy się:<br>
+                <strong>17 Maja, o godzinie 12:00</strong><br>
+                w<br>
                 <strong>Pałacu Ślubów</strong><br>
                 Stare Miasto, Warszawa<br>
-                pl. Zamkowy 6 <!-- Added Polish address in brackets for clarity -->
+                pl. Zamkowy 6
             </div>
              <div class="future-party-info info-gifts">
                 <strong> ⭐⭐⭐ Zamiast Kwiatów czy Prezentów:</strong><br>
@@ -199,12 +228,12 @@
                 <img src="our_photo_bg.png" alt="Павел та Софʼя"> <!-- Ukrainian Alt Text -->
             </div>
             <div class="important-info">
-                Ми одружуємося:
-                <strong>17 травня о 12:00</strong> <!-- Ukrainian Date/Time -->
-                <p>у </p>
-                <strong>Палаці Шлюбів (Pałac Ślubów)</strong><br> <!-- Ukrainian Location -->
-                Старе Місто (Starówka), Варшава<br> <!-- Ukrainian Location -->
-                пл. Замкова 6 (pl. Zamkowy 6) <!-- Ukrainian Address -->
+                Ми одружуємося:<br>
+                <strong>17 травня о 12:00</strong><br>
+                у<br> <!-- Removed the incorrect <p> tag -->
+                <strong>Палаці Шлюбів (Pałac Ślubów)</strong><br>
+                Старе Місто (Starówka), Варшава<br>
+                пл. Замкова 6 (pl. Zamkowy 6)
             </div>
              <div class="future-party-info info-gifts">
                 <strong> ⭐⭐⭐ Замість Квітів чи Подарунків:</strong><br> <!-- Ukrainian Gifts Heading -->
